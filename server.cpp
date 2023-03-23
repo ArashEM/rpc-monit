@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 
 #include <ncurses.h>
 
@@ -17,6 +18,12 @@ void bad(int x)
     }
 }
 
+int32_t cnt(void)
+{
+    static int32_t cnt{};
+    return cnt++;
+}
+
 int main()
 {
 
@@ -33,6 +40,8 @@ int main()
     // Binding a lambda function to the name "add".
     srv.bind("add", [](int a, int b)
              { return a + b; });
+
+    srv.bind("cnt", &cnt);
 
     // Throwing an exception will cause the server to write
     // an error response. This call will make it also
