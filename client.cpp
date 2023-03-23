@@ -1,11 +1,10 @@
 #include <iostream>
-
-#include "rpc/server.h"
+#include "rpc/client.h"
 
 int main(int argc, char *argv[])
 {
-    // Create a server that listens on port 8080, or whatever the user selected
-    rpc::server srv("0.0.0.0", rpc::constants::DEFAULT_PORT);
-
+    rpc::client client("127.0.0.1", rpc::constants::DEFAULT_PORT);
+    auto result = client.call("add", 2, 3).as<int>();
+    std::cout << "The result is: " << result << std::endl;
     return 0;
 }
