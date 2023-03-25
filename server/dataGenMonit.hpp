@@ -9,6 +9,9 @@
 #include "rpc/this_server.h"
 
 namespace Arash {
+/**
+ * @brief Monitor dataGen object and report it's status via rpc
+*/
 class dataGenMonit {
    public:
     dataGenMonit(const dataGen& gen, std::string name)
@@ -23,7 +26,7 @@ class dataGenMonit {
 
    private:
     const dataGen& m_gen;
-    std::string m_name;
+    const std::string m_name;
     rpc::server m_server;
 };
 }  // namespace Arash
