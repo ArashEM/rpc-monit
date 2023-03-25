@@ -1,4 +1,6 @@
 # server side
 find_package(rpclib REQUIRED)
-add_executable(${PROJECT_NAME}-server server.cpp)
-target_link_libraries(${PROJECT_NAME}-server ncurses librpc.a)
+set(TARGET_NAME ${PROJECT_NAME}-server)
+add_executable(${TARGET_NAME} server.cpp)
+target_link_libraries(${TARGET_NAME} ncurses librpc.a)
+target_compile_options(${TARGET_NAME} PRIVATE -Wall -Wextra)
