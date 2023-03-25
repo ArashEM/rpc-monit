@@ -6,6 +6,7 @@
 
 #include "dataGen.hpp"
 #include "rpc/server.h"
+#include "rpc/this_server.h"
 
 namespace Arash {
 class dataGenMonit {
@@ -18,7 +19,7 @@ class dataGenMonit {
         m_server.bind("cnt", [&]() { return m_gen.m_cnt; });
         m_server.async_run();
     };
-    ~dataGenMonit() { m_server.close_sessions(); }
+    ~dataGenMonit() { rpc::this_server().stop(); }
 
    private:
     const dataGen& m_gen;
