@@ -25,16 +25,15 @@ class stackData {
         ENUM_MAX
     };
 
-    stackData(size_t phyRxInit = 0, size_t phyTxInit = 0, size_t phyErrInit = 0,
-              size_t macRxInit = 0, size_t macTxInit = 0, size_t macErrInit = 0,
-              size_t txQuSizeInit = 0, size_t txQuErrInit = 0,
-              size_t rxQueSizeInit = 0, size_t rxQuErrInit = 0,
-              size_t stackRxInit = 0, size_t stackTxInit = 0,
-              size_t stackDrpInit = 0, size_t stackNumSockInit = 0)
-        : m_array{{phyRxInit, phyTxInit, phyErrInit, macRxInit, macTxInit,
-                   macErrInit, txQuSizeInit, txQuErrInit, rxQueSizeInit,
-                   rxQuErrInit, stackRxInit, stackTxInit, stackDrpInit,
-                   stackNumSockInit}} {}
+    stackData(size_t phyRxCnt = 0, size_t phyTxCnt = 0, size_t phyErrCnt = 0,
+              size_t macRxCnt = 0, size_t macTxCnt = 0, size_t macErrCnt = 0,
+              size_t txQuSizeCnt = 0, size_t txQuErrCnt = 0,
+              size_t rxQueSizeCnt = 0, size_t rxQuErrCnt = 0,
+              size_t stackRxCnt = 0, size_t stackTxCnt = 0,
+              size_t stackDrpCnt = 0, size_t stackNumSockCnt = 0)
+        : m_array{{phyRxCnt, phyTxCnt, phyErrCnt, macRxCnt, macTxCnt, macErrCnt,
+                   txQuSizeCnt, txQuErrCnt, rxQueSizeCnt, rxQuErrCnt,
+                   stackRxCnt, stackTxCnt, stackDrpCnt, stackNumSockCnt}} {}
 
     size_t& operator[](enum INDEX index) { return m_array.at(index); }
 

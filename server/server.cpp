@@ -18,12 +18,24 @@ int main(int argc, char* argv[]) {
     (void)argv;
 
     Arash::Phy phy{};
-    Arash::Mac mac{};
+    Arash::Mac mac{}, stack{};
     bool exitFlag{false};
     rpc::server srv{"0.0.0.0", rpc::constants::DEFAULT_PORT};
     srv.bind("data", [&]() {
-        Arash::stackData data{phy.rxCounter(), phy.txCounter(), 0, mac.rxCounter(),
-                              mac.txCounter()};
+        Arash::stackData data{phy.rxCounter(),
+                              phy.txCounter(),
+                              0,
+                              mac.rxCounter(),
+                              mac.txCounter(),
+                              0,
+                              0,
+                              0,
+                              0,
+                              0,
+                              stack.rxCounter(),
+                              stack.txCounter(),
+                              0,
+                              0};
         return data;
     });
     srv.async_run();
