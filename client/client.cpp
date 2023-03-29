@@ -1,12 +1,13 @@
-#include <iostream>
-#include <thread>
 #include <chrono>
+#include <iostream>
 #include <string>
+#include <thread>
 
 #include <ncurses.h>
 #include "rpc/client.h"
 
 #include "../server/dataGenMonit.hpp"
+#include "../server/stackData.hpp"
 
 int main(int argc, char* argv[]) {
     (void)argc;
@@ -20,7 +21,7 @@ int main(int argc, char* argv[]) {
 
     for (size_t i{}; i < 40; i++) {
         Arash::dataMonit data{client.call("data").as<Arash::dataMonit>()};
-        std::string msg {"The cnt is: "};
+        std::string msg{"The cnt is: "};
         msg += std::to_string(data.m_phyRxCounter);
         ::mvprintw(0, 0, msg.c_str());
         ::refresh();
