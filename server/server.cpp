@@ -4,7 +4,7 @@
 #include <thread>
 
 #include "dataGen.hpp"
-#include "dataGenMonit.hpp"
+#include "stackData.hpp"
 
 void workerThread(std::function<void(void)> f, bool& exitFlag) {
     while (!exitFlag) {
@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
     bool exitFlag{false};
     rpc::server srv{"0.0.0.0", rpc::constants::DEFAULT_PORT};
     srv.bind("data", [&]() {
-        Arash::dataMonit data{phy.rxCounter(), phy.txCounter(), mac.rxCounter(),
+        Arash::stackData data{phy.rxCounter(), phy.txCounter(), 0, mac.rxCounter(),
                               mac.txCounter()};
         return data;
     });

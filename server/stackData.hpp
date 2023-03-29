@@ -38,10 +38,10 @@ class stackData {
 
     size_t& operator[](enum INDEX index) { return m_array.at(index); }
 
-   private:
+    /* MSGPACK required public member data */
+    //private:
     std::array<size_t, INDEX::ENUM_MAX> m_array;
     MSGPACK_DEFINE_ARRAY(m_array);
 };
-
 
 }  // namespace Arash

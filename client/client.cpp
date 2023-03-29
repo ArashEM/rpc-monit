@@ -6,7 +6,6 @@
 #include <ncurses.h>
 #include "rpc/client.h"
 
-#include "../server/dataGenMonit.hpp"
 #include "../server/stackData.hpp"
 
 int main(int argc, char* argv[]) {
@@ -16,13 +15,10 @@ int main(int argc, char* argv[]) {
     rpc::client client{"127.0.0.1", rpc::constants::DEFAULT_PORT};
     ::initscr();
 
-    //std::string name{client.call("name").as<std::string>()};
-    //std::cout << "The name is: " << name << std::endl;
-
     for (size_t i{}; i < 40; i++) {
-        Arash::dataMonit data{client.call("data").as<Arash::dataMonit>()};
+        Arash::stackData data{client.call("data").as<Arash::stackData>()};
         std::string msg{"The cnt is: "};
-        msg += std::to_string(data.m_phyRxCounter);
+        msg += std::to_string(data[Arash::stackData::INDEX::MAC_RX]);
         ::mvprintw(0, 0, msg.c_str());
         ::refresh();
         std::this_thread::sleep_for(std::chrono::seconds(1));
